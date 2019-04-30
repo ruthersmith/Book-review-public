@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <title></title>
+
+
+  </head>
+  <body class="bg-dark">
+    <div class="container">
+
+
+      <div class="row" style="margin-top:20%;">
+
+      <div class="card text-center col-5 offset-3">
+
+        <div class="card-title">
+            <h3>Log into your account</h3>
+        </div>
+          <form class="card-body " action="{{url_for('home')}}" method="post">
+
+            <div>
+              <label for="user_name"><b>Username</b></label>
+              <input type="text" placeholder="Enter Username" name="user_name" required>
+            </div>
+
+            <div>
+              <label for="password"><b>Password</b></label>
+              <input type="password" placeholder="Enter Password" name="password" required>
+            </div>
+
+            <div class="">
+              <button class="btn btn-primary btn-lg offset-1" type="submit">Login</button>
+            </div>
+          </form>
+
+      </div>
+
+      </div>
+
+
+    </div>
+
+  </body>
+</html>
