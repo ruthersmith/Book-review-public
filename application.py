@@ -37,10 +37,11 @@ def home():
     password  = request.form.get("password")
     
     user = helpers.authenticate(db,username,password)
-    
-
-    
     return "you have just logged in " + username
+
+@app.route('/create_account')
+def create_account():
+    return "you will create an account"
 
 
 
