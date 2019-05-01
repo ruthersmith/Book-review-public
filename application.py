@@ -5,6 +5,7 @@ $ set FLASK_DEBUG=1
 $ python -m flask run
 '''
 
+import helpers
 from flask import Flask, session,render_template,request
 from flask_session import Session
 from sqlalchemy import create_engine
@@ -31,10 +32,24 @@ def index():
 
 @app.route('/home',methods = ["POST"])
 def home():
+    
     username = request.form.get("user_name")
-    result =  db.execute("SELECT * FROM users")
-    for row in result:
-        #print("username:", row['username'])
-        print(row)
+    password  = request.form.get("password")
+    
+    user = helpers.authenticate(db,username,password)
+    
+
     
     return "you have just logged in " + username
+
+
+
+
+
+
+
+
+
+
+
+
