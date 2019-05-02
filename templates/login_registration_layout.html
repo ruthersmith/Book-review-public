@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <title>Book Nerd</title>
+
+    <style media="screen">
+      .background_color{
+        background-color:#0D83DD
+      }
+    </style>
+  </head>
+
+  <body class="background_color">
+    <div class="container">
+        <div class="text-white" style="margin-top:10%">
+          <div class="text-white" style="margin-top:10%">
+              <h1 style="text-align:center">BookNerd</h1>
+              <h3 style="text-align:center">Step Into Awesomeness</h3>
+              <h6 style="text-align:center">{% block heading %}{% endblock%}</h6>
+          </div>
+        </div>
+
+        <div class="row text-white" style="text-align:center;">
+          <form style="position:absolute;left:40%"  action="{{url_for('home')}}" method="post">
+
+            <div>
+              {% block username_field %}{% endblock%}
+            </div>
+
+
+
+            <div>
+                {% block password_field %}{% endblock%}
+            </div>
+
+            <div class="">
+                {% block button_field %}{% endblock%}
+            </div>
+
+            {% block additional_field %}{% endblock%}
+
+
+          </form>
+
+        </div>
+
+    </div>
+
+  </body>
+</html>

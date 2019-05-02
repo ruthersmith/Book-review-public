@@ -41,7 +41,7 @@ def home():
 
 @app.route('/create_account')
 def create_account():
-    return "you will create an account"
+    return  render_template("registration.html")
 
 
 

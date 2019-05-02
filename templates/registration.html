@@ -1,0 +1,23 @@
+{% extends "login_registration_layout.html" %}
+{% block heading %}Register an account{% endblock%}
+
+
+{% block username_field %}
+  <label class="" for="user_name"><b>Username</b></label>
+  <input type="text" placeholder="Create a Username" name="user_name" required>
+{% endblock%}
+
+{% block password_field %}
+  <label class="" for="password"><b>Password</b></label>
+  <input type="password" placeholder="Create a Password" name="password" required>
+
+  <div class="">
+    <label class="" for="password"><b>Password</b></label>
+    <input type="password" placeholder="Confirm Password" name="password_confirm" required>
+  </div>
+
+{% endblock%}
+
+{% block button_field %}
+  <button class="btn btn-primary btn-lg offset-1" type="submit">Register</button>
+{% endblock%}
