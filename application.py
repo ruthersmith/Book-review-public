@@ -35,9 +35,14 @@ def home():
     
     username = request.form.get("user_name")
     password  = request.form.get("password")
-    
     user = helpers.authenticate(db,username,password)
-    return "you have just logged in " + username
+    
+    if user == None:
+        return "<h1>Error:Failed To Authenticate<h1>"
+    else:
+        return "you have just logged in " + username
+        
+    
 
 @app.route('/create_account')
 def create_account():
