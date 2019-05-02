@@ -20,5 +20,13 @@ def authenticate(db,username,password):
         
     return auth_result
 
+
 def registerUser(db,request):
-    return "I am trying to register you"
+     FirstName = request.form.get("first_name")
+     LastName  = request.form.get("last_name")
+     username = request.form.get("user_name")
+     password  = request.form.get("password")
+     password_confirm  = request.form.get("password_confirm")
+     print((FirstName,LastName,username,password,password_confirm))
+     
+     return "I am trying to register you"

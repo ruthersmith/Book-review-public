@@ -6,7 +6,7 @@ $ python -m flask run
 '''
 
 import helpers
-from flask import Flask, session,render_template,request
+from flask import Flask, session,render_template,request,url_for
 from flask_session import Session
 from sqlalchemy import create_engine
 from sqlalchemy.orm import scoped_session, sessionmaker
@@ -28,7 +28,8 @@ db = scoped_session(sessionmaker(bind=engine))
 
 @app.route("/")
 def index():
-    return render_template("login.html")
+    url = url_for('home')
+    return render_template("login.html",url = url)
 
 @app.route('/home',methods = ["POST"])
 def home():
@@ -46,7 +47,14 @@ def home():
 
 @app.route('/create_account')
 def create_account():
-    return  render_template("registration.html")
+    onSubmitUrl = url_for('home_register')
+    return  render_template("registration.html",url=onSubmitUrl)
+
+#
+@app.route('/home_registered',methods = ["POST"])
+def home_register():
+    return "you have registered"
+
 
 
 
