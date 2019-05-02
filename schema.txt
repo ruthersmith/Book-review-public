@@ -1,4 +1,7 @@
 Create Table Users(
 user_id Serial Primary Key,
 user_name Text Not Null,
-password Text Not Null);
+password Text Not Null,
+first_name Text Not Null;
+last_name Text Not Null;);
+

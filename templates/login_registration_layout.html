@@ -11,6 +11,10 @@
       .background_color{
         background-color:#0D83DD
       }
+
+      button{
+        background-color:#83C622
+      }
     </style>
   </head>
 
@@ -27,13 +31,13 @@
         <div class="row text-white" style="text-align:center;">
           <form style="position:absolute;left:40%"  action="{{url_for('home')}}" method="post">
 
-            <div>
-              {% block username_field %}{% endblock%}
-            </div>
+
+            {% block username_field %}{% endblock%}
 
 
 
-            <div>
+
+            <div style="margin-right:-10px">
                 {% block password_field %}{% endblock%}
             </div>
 
