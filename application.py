@@ -6,6 +6,7 @@ $ python -m flask run
 '''
 
 import helpers
+import admin
 from flask import Flask, session,render_template,request,url_for
 from flask_session import Session
 from sqlalchemy import create_engine
@@ -38,10 +39,13 @@ def home():
     password  = request.form.get("password")
     user = helpers.authenticate(db,username,password)
     
+    #if(user == 1):
+        #admin.populateBookTable(db)
+    
     if user == None:
         return "<h1>Error:Failed To Authenticate<h1>"
     else:
-        return "you have just logged in " + username
+        return render_template("dashboard.html")
         
     
 
@@ -53,6 +57,7 @@ def create_account():
 #
 @app.route('/home_registered',methods = ["POST"])
 def home_register():
+    helpers.registerUser(db,request)
     return "you have registered"
 
 

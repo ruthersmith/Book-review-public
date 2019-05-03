@@ -27,6 +27,16 @@ def registerUser(db,request):
      username = request.form.get("user_name")
      password  = request.form.get("password")
      password_confirm  = request.form.get("password_confirm")
-     print((FirstName,LastName,username,password,password_confirm))
      
-     return "I am trying to register you"
+     if(password!=password_confirm):
+         print("password not a match")
+         return False
+     else:
+         sql = "Insert Into users(user_name,password,first_name,last_name) " 
+         sql += "Values(:uname,:psw,:fname,:lname)"
+         db.execute(sql,{"uname":username,"psw":password,"fname":FirstName,"lname":LastName})
+         db.commit()
+         return True
+        
+    
+     
