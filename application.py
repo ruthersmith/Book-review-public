@@ -73,13 +73,14 @@ def home_register():
 def book(isbn):
     data = {}
     data['book_info'] = helpers.getBookInfo(db,isbn)
+    print(data['book_info'])
     return render_template("pages/book_page.html",data=data)
 
 @app.route('/browse')
 def browse():
     data = {}
         # list of (isbn,ratings,title,author,year) book info
-    browse_book = helpers.getBooks(db,limit = 81)
+    browse_book = helpers.getBooks(db,limit = 300)
     browse_book.pop(0)
     data['browse'] = browse_book
     return render_template("pages/browse_page.html",data=data)

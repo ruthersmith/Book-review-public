@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+{% include 'head.html' %}
+<body class="background_color">
+  {% include 'navbar.html' %}
+  <div class="container-fluid">
+
+    <div class="row" style="margin-top:15px">
+      <div class="row col-md-4" style="">
+        <div class="api-img" style="">
+          <img  class="api-img" src="http://covers.openlibrary.org/b/isbn/{{data['book_info'][0]}}-M.jpg?default=false"
+            onerror="this.onerror=null;this.src='{{url_for('static', filename='images/book-cover-default.png')}}';" />
+        </div>
+        <div class="row col-md-12 center-txt">
+          <h5 class="col-md-12">By {{data['book_info'][3]}}</h5>
+          <h6 class="col-md-12">Published in {{data['book_info'][4]}}</h6>
+          <p class="col-md-12">isbn: {{data['book_info'][0]}}</p>
+          <p class="col-md-12 " style="margin-top:-15px">rating: {{data['book_info'][1]}}</p>
+          <button style="background-color:#83C622;" class="btn btn-primary offset-sm-4 " type="submit">
+            + reading list</button>
+
+        </div>
+      </div>
+      <div class="row col-md-8 left-col">
+        <h1 style="position:relative">{{data['book_info'][2]}}</h1>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+           tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+            veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex
+            ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
+             velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
+              cupidatat non proident, sunt in culpa qui officia deserunt mollit
+              anim id est laborum.</p>
+
+          <div class="col-sm-12">
+            <form class="" action="index.html" method="post">
+              <div class="form-group row col-sm-12">
+                <h5>Comment:</h5>
+                <textarea class="form-control" id="exampleFormControlTextarea1" rows="2"></textarea>
+              </div>
+
+              <div class="form-group row ">
+                <h5 class="col-sm-12">Rate Book:</h5>
+                <input class="offset-sm-1" type="number" min="0" max="5">
+                <button style="" class="btn btn-primary offset-sm-4 btn-color" type="submit">
+                  Submit Rating</button>
+              </div>
+
+
+
+
+            </form>
+          </div>
+
+      </div>
+
+    </div>
+
+
+
+
+
+  </div>
+</body>

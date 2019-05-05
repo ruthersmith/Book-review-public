@@ -1,4 +1,4 @@
-h4,h3,h1,h2,h5,a,p{
+h4,h3,h1,h2,h5,a,p,h6{
   color: white;
 }
 a:hover{
@@ -29,10 +29,20 @@ a:hover{
   background-color:#205E85
 }
 .book-place{
-  background-color:purple;
   height:30vh;
-  background: rgba(139,0,139, 0.2);
+  background: rgba(128,0,128, 0.1);
+}
+.book-page-img{
+
+  height:40vh;
 }
 .center-txt{
   text-align: center;
+}
+.left-col{
+  background-color:#161745;
+  margin:5px
+}
+.btn-color{
+  background-color:#83C622;
 }

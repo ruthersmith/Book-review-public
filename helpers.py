@@ -12,13 +12,13 @@ def authenticate(db,request):
     auth_result = None
     #where we store the result of the query
     rows =  []
-    sql = "SELECT user_id FROM users where user_name = :username and password = :password"
+    sql = "SELECT * FROM users where user_name = :username and password = :password"
     result =  db.execute(sql,{"username":username, "password":password})
     for row in result:
         rows.append(row)
     
     if len(rows) == 1:
-        auth_result = rows[0][0]
+        auth_result = rows
         
     return auth_result
 
@@ -49,6 +49,17 @@ def getBooks(db,limit):
         books.append(row)
     books.pop(0)
     return books
+
+#function responsible for getting the book info
+def getBookInfo(db,isbn):
+    book = []
+    sql = "select * from books where isbn = :isbn"
+    result = db.execute(sql,{"isbn":isbn})
+    for row in result:
+        book.append(row)
+    
+    return book[0]
+    
     
 
 
