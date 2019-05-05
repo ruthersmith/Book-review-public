@@ -48,6 +48,13 @@ def home():
     browse_book = helpers.getBooks(db)
     browse_book.pop(0)
     data['browse'] = browse_book
+    
+    #reading list 
+    data['reading_list'] = []
+    #book reviewed
+    data['reading_list'] 
+    
+    
     print(data)
     
     return render_template("dashboard.html",data=data)
@@ -64,6 +71,11 @@ def create_account():
 def home_register():
     helpers.registerUser(db,request)
     return "you have registered"
+
+#individual book page route
+@app.route('/home/<int:isbn>')
+def book(isbn):
+    return "this is book " + str(isbn)
 
 
 

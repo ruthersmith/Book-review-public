@@ -1,0 +1,23 @@
+<!-- # list of (isbn,ratings,title,author,year) book info -->
+
+{% for book in range(3) %}
+  <div class="col-md-3 col-xs-12">
+     <a href="#">
+      <div class="img-thumbnail  col-xs-12" style="background-color:purple;height:20vh">
+
+      </div>
+      <h6>Book Name</h6>
+      <p>author</p>
+      </a>
+  </div>
+  {% endfor %}
+
+  {% if data['reading_list']|length < 4 %}
+  <div class="col-md-3 col-xs-12">
+     <a href="#">
+      <div class="img-thumbnail  col-xs-12" style="background-color:purple;height:20vh">
+            <h1 style="text-align:center; border-radius:50px"> Add Books</h1>
+      </div>
+      </a>
+  </div>
+  {% endif %}

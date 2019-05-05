@@ -1,6 +1,19 @@
-h4,h3,h1,h2,a{
+h4,h3,h1,h2,h5,a,p{
   color: white;
 }
 a:hover{
   color: yellow;
+}
+
+.dashboard-section{
+  background-color:#1E365C;
+  margin:5px
+}
+
+.pill-ul{
+  background-color: white;
+  margin-top:15px;
+  border-radius: 5px;
+  padding: 5px;
+  color:#205E85;
 }

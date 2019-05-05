@@ -1,7 +1,7 @@
 <!-- # list of (isbn,ratings,title,author,year) book info -->
 {% for book in data['browse'] %}
-  <div class="col-md-3 col-xs-12">
-     <a href="#">
+  <div class="col-md-3 col-xs-12" ">
+     <a href="{{url_for('book',isbn = book[0])}}">
       <div class="img-thumbnail  col-xs-12" style="background-color:purple;height:20vh">
 
       </div>
