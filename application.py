@@ -42,6 +42,8 @@ def home():
     if user == None:
         return "<h1>Error:Failed To Authenticate<h1>"
     
+    #user information
+    data['user'] = user
     # list of (isbn,ratings,title,author,year) book info
     data['browse'] = helpers.getBooks(db,limit = 5)
     
@@ -50,9 +52,7 @@ def home():
     #book reviewed
     data['reading_list'] 
     
-    
-    print(data)
-    
+    print(user)    
     return render_template("dashboard.html",data=data)
         
     
@@ -71,13 +71,15 @@ def home_register():
 #individual book page route
 @app.route('/home/<string:isbn>')
 def book(isbn):
-    return "this is book " + str(isbn)
+    data = {}
+    data['book_info'] = helpers.getBookInfo(db,isbn)
+    return render_template("pages/book_page.html",data=data)
 
 @app.route('/browse')
 def browse():
     data = {}
         # list of (isbn,ratings,title,author,year) book info
-    browse_book = helpers.getBooks(db,limit = 9)
+    browse_book = helpers.getBooks(db,limit = 81)
     browse_book.pop(0)
     data['browse'] = browse_book
     return render_template("pages/browse_page.html",data=data)
