@@ -24,3 +24,15 @@ a:hover{
   display:block;
   margin:auto;
 }
+
+.background_color{
+  background-color:#205E85
+}
+.book-place{
+  background-color:purple;
+  height:30vh;
+  background: rgba(139,0,139, 0.2);
+}
+.center-txt{
+  text-align: center;
+}

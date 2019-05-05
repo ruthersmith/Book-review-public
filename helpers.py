@@ -5,7 +5,9 @@ Created on Tue Apr 30 16:08:03 2019
 @author: bercy
 """
 
-def authenticate(db,username,password):
+def authenticate(db,request):
+    username = request.form.get("user_name")
+    password  = request.form.get("password")
     #what will be returned
     auth_result = None
     #where we store the result of the query
@@ -39,13 +41,13 @@ def registerUser(db,request):
          return True
 
 #function resposible for getting the books from the database
-def getBooks(db):
-    
+def getBooks(db,limit):
     books = []
-    sql = "SELECT * FROM books LIMIT 5"
+    sql = "SELECT * FROM books limit " + str(limit)
     result = db.execute(sql)
     for row in result:
         books.append(row)
+    books.pop(0)
     return books
     
 

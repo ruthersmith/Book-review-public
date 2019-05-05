@@ -37,17 +37,13 @@ def home():
     data = {}
     
     #authentification 
-    username = request.form.get("user_name")
-    password  = request.form.get("password")
-    user = helpers.authenticate(db,username,password)
+    user = helpers.authenticate(db,request)
     #if there were no users found, display error messageS
     if user == None:
         return "<h1>Error:Failed To Authenticate<h1>"
     
     # list of (isbn,ratings,title,author,year) book info
-    browse_book = helpers.getBooks(db)
-    browse_book.pop(0)
-    data['browse'] = browse_book
+    data['browse'] = helpers.getBooks(db,limit = 5)
     
     #reading list 
     data['reading_list'] = []
@@ -73,9 +69,18 @@ def home_register():
     return "you have registered"
 
 #individual book page route
-@app.route('/home/<int:isbn>')
+@app.route('/home/<string:isbn>')
 def book(isbn):
     return "this is book " + str(isbn)
+
+@app.route('/browse')
+def browse():
+    data = {}
+        # list of (isbn,ratings,title,author,year) book info
+    browse_book = helpers.getBooks(db,limit = 9)
+    browse_book.pop(0)
+    data['browse'] = browse_book
+    return render_template("pages/browse_page.html",data=data)
 
 
 

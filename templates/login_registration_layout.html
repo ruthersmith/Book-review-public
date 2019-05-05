@@ -4,13 +4,10 @@
     <meta charset="utf-8">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
     integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-
+     <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
     <title>Book Nerd</title>
 
     <style media="screen">
-      .background_color{
-        background-color:#0D83DD
-      }
 
       button{
         background-color:#83C622
@@ -33,9 +30,6 @@
 
 
             {% block username_field %}{% endblock%}
-
-
-
 
             <div style="margin-right:-10px">
                 {% block password_field %}{% endblock%}

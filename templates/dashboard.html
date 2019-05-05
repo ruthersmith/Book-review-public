@@ -1,25 +1,8 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
-  <head>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-
-     <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
-    <title>Book Nerd</title>
-  </head>
-  <body style="background-color:#205E85">
-
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand col-sm-4 col-md-8" href="#"> <h1 style="color:black">Book Nerd</h1> </a>
-
-  <div>
-
-    <form class="form-inline my-2 my-lg-0">
-      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-    </form>
-  </div>
-</nav>
+    {% include 'head.html' %}
+  <body class="background_color">
+    {% include 'navbar.html' %}
 
     <div class="container-fluid row ">
 
@@ -30,35 +13,30 @@
             <img class="img-fluid" src="{{url_for('static', filename='images/user-placeholder.jpg')}}" />
             <p>username</p>
             <ul  class="nav nav-pills nav-stacked pill-ul col-sm-12" style="position:absolute">
-
             </ul>
           </div>
-
         </div>
 
         <!-- right column containing the books and their category -->
         <div class="row col-md-9">
-
               <h1>Your Books</h1>
               <!-- books that were reviewed -->
               <div class="row dashboard-section col-md-12">
                   <h2 class="col-md-12" > <a href="#">Books Reviewed</a> </h2>
                   {% include 'dashboard_section/book_reviewed.html' %}
               </div>
-
               <!-- books in reading list -->
               <div class="row dashboard-section col-md-12" >
                   <h2 class="col-md-12"  ><a href="#">Reading List</a> </h2>
                   {% include 'dashboard_section/reading_list.html' %}
               </div>
-
               <!-- browse section -->
               <div class="row dashboard-section col-md-12" >
-                <h2 class="col-md-12"   style=> <a href="#">Browse</a> </h2>
+                <h2 class="col-md-12"   style=>
+                   <a href="{{url_for('browse')}}">Browse</a>
+                </h2>
                 {% include 'dashboard_section/browse.html' %}
               </div>
-
-
         </div>
 
     </div>
