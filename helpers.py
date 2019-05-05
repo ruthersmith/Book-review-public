@@ -20,7 +20,7 @@ def authenticate(db,username,password):
         
     return auth_result
 
-
+#function responsible for registering the user
 def registerUser(db,request):
      FirstName = request.form.get("first_name")
      LastName  = request.form.get("last_name")
@@ -37,6 +37,19 @@ def registerUser(db,request):
          db.execute(sql,{"uname":username,"psw":password,"fname":FirstName,"lname":LastName})
          db.commit()
          return True
+
+#function resposible for getting the books from the database
+def getBooks(db):
+    
+    books = []
+    sql = "SELECT * FROM books LIMIT 5"
+    result = db.execute(sql)
+    for row in result:
+        books.append(row)
+    return books
+    
+
+
         
     
      

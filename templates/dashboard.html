@@ -11,7 +11,7 @@
     <div class="container-fluid row">
         <!-- left column containing the user info -->
         <div class="row  col-md-3">
-            <h3 class="offset-md-3 col-md-8">Welcome</h3>
+            <h3 class="offset-md-2 col-md-8">Dashboard</h3>
             <div class="offset-md-2 col-md-8" style="background-color:white;height:30vh">image goes here</div>
             <h5 class="offset-md-4 col-md-7 " >Name</h5>
             <p class="offset-md-4">Username</p>
@@ -20,21 +20,26 @@
         <!-- right column containing the books and their category -->
         <div class="row col-md-9">
             <div class="col-md-12">
-              <h3>Your Books</h3>
+              <h1>Your Books</h1>
               <!-- books that were reviewed -->
               <div class="row ">
-                  <h4 style="padding-left:15px">Books Reviewed</h4>
+                  <h2 class="col-md-12" > <a href="#">Books Reviewed</a> </h2>
+                  {% include 'book_reviewed.html' %}
               </div>
 
               <!-- books in reading list -->
               <div class="row">
-                  <h4 style="padding-left:15px">Reading List</h4>
+                  <h2 class="col-md-12" ><a href="#">Reading List</a> </h2>
+                  {% include 'reading_list.html' %}
               </div>
 
               <!-- browse section -->
               <div class="row">
-                    <h4 style="padding-left:15px">Browse</h4>
+                <h2 class="col-md-12" style=> <a href="#">Browse</a> </h2>
+                {% include 'browse.html' %}
               </div>
+
+
             </div>
 
 

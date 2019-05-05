@@ -6,7 +6,6 @@ $ python -m flask run
 '''
 
 import helpers
-import admin
 from flask import Flask, session,render_template,request,url_for
 from flask_session import Session
 from sqlalchemy import create_engine
@@ -34,18 +33,24 @@ def index():
 
 @app.route('/home',methods = ["POST"])
 def home():
+    #data to be passed in to the front
+    data = {}
     
+    #authentification 
     username = request.form.get("user_name")
     password  = request.form.get("password")
     user = helpers.authenticate(db,username,password)
-    
-    #if(user == 1):
-        #admin.populateBookTable(db)
-    
+    #if there were no users found, display error messageS
     if user == None:
         return "<h1>Error:Failed To Authenticate<h1>"
-    else:
-        return render_template("dashboard.html")
+    
+    # list of (isbn,ratings,title,author,year) book info
+    browse_book = helpers.getBooks(db)
+    browse_book.pop(0)
+    data['browse'] = browse_book
+    print(data)
+    
+    return render_template("dashboard.html",data=data)
         
     
 
