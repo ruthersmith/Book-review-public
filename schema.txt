@@ -12,5 +12,5 @@ rating Text,
 comment Text);
 
 Create Table readinglist(
-user_id Integer REFERENCES users(user_id),
-isbn Text REFERENCES books(isbn));
+user_id Integer Not Null REFERENCES users(user_id),
+isbn Text Not Null REFERENCES books(isbn));

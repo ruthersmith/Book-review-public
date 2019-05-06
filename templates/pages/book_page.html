@@ -16,8 +16,12 @@
           <h6 class="col-md-12">Published in {{data['book_info'][4]}}</h6>
           <p class="col-md-12">isbn: {{data['book_info'][0]}}</p>
           <p class="col-md-12 " style="margin-top:-15px">rating: {{data['book_info'][1]}}</p>
-          <button style="background-color:#83C622;" class="btn btn-primary offset-sm-4 " type="submit">
-            + reading list</button>
+
+          <form class="offset-sm-4 " action="{{url_for('addReadingList')}}" method="post">
+            <input type="hidden"  name="isbn" value=" {{data['book_info'][0]}}">
+            <button style="background-color:#83C622;" class="btn btn-primary" type="submit">
+              + reading list</button>
+          </form>
 
         </div>
       </div>
@@ -41,7 +45,6 @@
               <div class="form-group row ">
                 <h5 class="col-sm-12">Rate Book:</h5>
                 <input name="rate" class="offset-sm-1" type="number" min="0" max="5">
-                <input type="hidden"  name="user_id" value="3487">
                 <input type="hidden"  name="isbn" value="3487">
                 <button style="" class="btn btn-primary offset-sm-4 btn-color" type="submit">
                   Submit Rating</button>

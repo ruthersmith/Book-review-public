@@ -6,7 +6,7 @@ $ python -m flask run
 '''
 
 import helpers
-from flask import Flask, session,render_template,request,url_for
+from flask import Flask, session,render_template,request,url_for,redirect
 from flask_session import Session
 from sqlalchemy import create_engine
 from sqlalchemy.orm import scoped_session, sessionmaker
@@ -25,34 +25,32 @@ DB_URL += "5432/d5aba9o0q74a0v"
 engine = create_engine(DB_URL)
 db = scoped_session(sessionmaker(bind=engine))
 
-data = {}
 
 @app.route("/")
 def index():
     url = url_for('home')
-    return render_template("login.html",url = url)
-
+    return render_template("login.html",url = url)   
+       
 @app.route('/home',methods = ["POST"])
 def home():
+
     #data to be passed in to the front
-    
+    data = {}
     #authentification 
     user = helpers.authenticate(db,request)
     #if there were no users found, display error messageS
     if user == None:
         return "<h1>Error:Failed To Authenticate<h1>"
     
-    #user information
-    data['user'] = user
     # list of (isbn,ratings,title,author,year) book info
     data['browse'] = helpers.getBooks(db,limit = 5)
     
     #reading list 
-    data['reading_list'] = []
+    data['reading_list'] = helpers.getReadingList(db,user)
     #book reviewed
     data['book_reviewed'] = []
     
-    print(user)    
+    session['user_id'] = user
     return render_template("dashboard.html",data=data)
         
     
@@ -86,19 +84,12 @@ def browse():
 @app.route('/commented',methods = ["POST"])
 #when a new comment is submitted  this function is called
 def submitComment():
-    
-    print(data)
     return "hello"
 
-
-
-
-
-
-
-
-
-
+@app.route('/read',methods = ["POST"])
+def addReadingList():
+    helpers.insertReading(db,session['user_id'],request)
+    return "you added a book" + str(session['user_id'])
 
 
 

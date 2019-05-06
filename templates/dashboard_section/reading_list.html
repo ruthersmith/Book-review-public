@@ -1,13 +1,15 @@
 <!-- # list of (isbn,ratings,title,author,year) book info -->
 
-{% for book in data[reading_list] %}
-  <div class="col-md-3 col-xs-12">
-     <a href="#">
-      <div class="img-thumbnail  col-xs-12" style="background-color:purple;height:20vh">
-
+{% for book in data['reading_list'] %}
+  <div class="col-md-3 col-xs-12 center-txt">
+     <a href="{{url_for('book',isbn = book[0])}}">
+      <div class="img-thumbnaill img-fluid col-xs-12 book-place">
+        <img class="api-img" src="http://covers.openlibrary.org/b/isbn/{{book[0]}}-M.jpg?default=false"
+        onerror="this.onerror=null;this.src='{{url_for('static', filename='images/book-cover-default.png')}}';" />
       </div>
-      <h6>Book Name</h6>
-      <p>author</p>
+
+      <h6>{{book[2]}}</h6>
+      <p>{{book[3]}}</p>
       </a>
   </div>
   {% endfor %}

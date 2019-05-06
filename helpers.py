@@ -12,15 +12,15 @@ def authenticate(db,request):
     auth_result = None
     #where we store the result of the query
     rows =  []
-    sql = "SELECT * FROM users where user_name = :username and password = :password"
+    sql = "SELECT user_id FROM users where user_name = :username and password = :password"
     result =  db.execute(sql,{"username":username, "password":password})
     for row in result:
         rows.append(row)
     
     if len(rows) == 1:
         auth_result = rows
-        
-    return auth_result
+        return auth_result[0][0]
+    return None
 
 #function responsible for registering the user
 def registerUser(db,request):
@@ -69,6 +69,35 @@ def insertRating(db,user,request):
     sql += "Values(:user_id,:isbn,:rating,:comment)"
     db.execute(sql,{"user_id":user,"isbn":isbn,"rating":rating,"comment":comment})
     db.commit()
+    
+def insertReading(db,user_id,request):
+    exist = []
+    isbn = request.form.get("isbn").strip()
+    print(isbn)
+    
+    #check to see if row exist
+    sql = "select * from readinglist where user_id = :user_id and isbn = :isbn"
+    result = db.execute(sql,{"user_id":user_id,"isbn":isbn})
+    
+    for row in result:
+        exist.append(row)
+    
+    #if the len is zero book not yet in readinglist
+    if(len(exist) == 0):
+        sql = "insert into readinglist(user_id,isbn) Values(:user_id,:isbn)"
+        db.execute(sql,{"user_id":user_id,"isbn":isbn})
+        db.commit()    
+    return True
+
+def getReadingList(db,user_id):
+    readingList = []
+    sql = "select * from books join readinglist using(isbn) where user_id = :user_id"
+    result = db.execute(sql,{"user_id":user_id})
+    
+    for row in result:
+        readingList.append(row)
+    
+    return readingList
     
     
 
