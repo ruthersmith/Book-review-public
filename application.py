@@ -37,11 +37,13 @@ def home():
     #data to be passed in to the front
     data = {}
     #authentification 
-    user = helpers.authenticate(db,request)
+    user_info = helpers.authenticate(db,request)
+    user = user_info[0][0]
     #if there were no users found, display error messageS
     if user == None:
         return "<h1>Error:Failed To Authenticate<h1>"
     
+    data['user_info'] = user_info[0]
     # list of (isbn,ratings,title,author,year) book info
     data['browse'] = helpers.getBooks(db,limit = 5)
     
@@ -67,10 +69,11 @@ def home_register():
     return "you have registered"
 
 #individual book page route
-@app.route('/home/<string:isbn>')
+@app.route('/home/<string:isbn>',methods = ["POST","GET"])
 def book(isbn):
     data = {}
     data['book_info'] = helpers.getBookInfo(db,isbn)
+    data['book_rates'] = helpers.getBookComment(db,isbn)
     print(data['book_info'])
     return render_template("pages/book_page.html",data=data)
 
@@ -84,8 +87,9 @@ def browse():
 @app.route('/commented',methods = ["POST"])
 #when a new comment is submitted  this function is called
 def submitComment():
+    isbn = request.form.get("isbn")
     helpers.submitComment(db,session['user_id'],request)
-    return "hello"
+    return redirect( url_for('book',isbn = isbn) )
 
 @app.route('/read',methods = ["POST"])
 def addReadingList():

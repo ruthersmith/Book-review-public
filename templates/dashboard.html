@@ -9,9 +9,9 @@
         <!-- left column containing the user info -->
         <div class="row col-md-3 left-col">
           <div class="col-sm-9" style="text-align:center;position:absolute" >
-            <h2 class="">Name</h2>
+            <h2 class="">{{data['user_info'][3]}}</h2>
             <img class="img-fluid" src="{{url_for('static', filename='images/user-placeholder.jpg')}}" />
-            <p>username</p>
+            <p>{{data['user_info'][1]}}</p>
             <ul  class="nav nav-pills nav-stacked pill-ul col-sm-12" style="position:absolute">
             </ul>
           </div>

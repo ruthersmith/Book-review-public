@@ -12,15 +12,16 @@ def authenticate(db,request):
     auth_result = None
     #where we store the result of the query
     rows =  []
-    sql = "SELECT user_id FROM users where user_name = :username and password = :password"
+    sql = "SELECT * FROM users where user_name = :username and password = :password"
     result =  db.execute(sql,{"username":username, "password":password})
     for row in result:
         rows.append(row)
     
     if len(rows) == 1:
         auth_result = rows
-        return auth_result[0][0]
-    return None
+        return auth_result
+    
+    return auth_result
 
 #function responsible for registering the user
 def registerUser(db,request):
@@ -59,6 +60,18 @@ def getBookInfo(db,isbn):
         book.append(row)
     
     return book[0]
+
+def getBookComment(db,isbn):
+    rates = []
+    
+    sql = "Select user_name,rating,comment from rates "
+    sql += "join users using(user_id) where isbn = :isbn"
+    result = db.execute(sql,{"isbn":isbn})
+    
+    for row in result:
+        rates.append(row)
+    print(rates)
+    return rates
 
 def insertRating(db,user,request):
     isbn = request.form.get("isbn")

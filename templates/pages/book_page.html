@@ -53,15 +53,15 @@
             </form>
           </div>
 
+        {% for rate in data['book_rates'] %}
           <div class="col-md-12" style="border:1px solid white; margin-bottom:10px">
-            <div class="col-md-8" style="border:1px solid white;">
-              <h6>commenter says:</h6>
-              <p>I am commenting yay!!</p>
-            </div>
-            <div class="col-md-1" style="border:1px solid white;">
-              <p>rated:3</p>
+            <div class="col-md-8" >
+              <h6>{{rate[0]}} says:</h6>
+              <p>{{rate[2]}} </p>
+              <p>rated: {{rate[1]}}</p>
             </div>
           </div>
+        {% endfor %}
 
       </div>
     </div>
