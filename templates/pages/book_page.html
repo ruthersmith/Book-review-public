@@ -39,13 +39,13 @@
             <form class="" action="{{url_for('submitComment')}}" method="post">
               <div class="form-group row col-sm-12">
                 <h5>Comment:</h5>
-                <textarea name="comment" class="form-control" id="exampleFormControlTextarea1" rows="2"></textarea>
+                <textarea required name="comment" class="form-control" id="exampleFormControlTextarea1" rows="2"></textarea>
               </div>
 
               <div class="form-group row ">
                 <h5 class="col-sm-12">Rate Book:</h5>
-                <input name="rate" class="offset-sm-1" type="number" min="0" max="5">
-                <input type="hidden"  name="isbn" value="3487">
+                <input required name="rate" class="offset-sm-1" type="number" min="0" max="5">
+                <input type="hidden"  name="isbn" value="{{data['book_info'][0]}}">
                 <button style="" class="btn btn-primary offset-sm-4 btn-color" type="submit">
                   Submit Rating</button>
               </div>

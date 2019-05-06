@@ -8,8 +8,8 @@ last_name Text Not Null;);
 Create Table rates(
 user_id Integer REFERENCES users(user_id),
 isbn Text REFERENCES books(isbn),
-rating Text,
-comment Text);
+rating Text Not Null,
+comment Not Null Text);
 
 Create Table readinglist(
 user_id Integer Not Null REFERENCES users(user_id),

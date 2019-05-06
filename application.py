@@ -84,6 +84,7 @@ def browse():
 @app.route('/commented',methods = ["POST"])
 #when a new comment is submitted  this function is called
 def submitComment():
+    helpers.submitComment(db,session['user_id'],request)
     return "hello"
 
 @app.route('/read',methods = ["POST"])

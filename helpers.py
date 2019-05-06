@@ -99,6 +99,36 @@ def getReadingList(db,user_id):
     
     return readingList
     
+def submitComment(db,user_id,request):
+    overall_rating = []
+    isbn = request.form.get("isbn").strip()
+    rate = int(request.form.get("rate"))
+    comment = request.form.get("comment")
+    
+    #insert the comment in rates table
+    sql = "insert into rates(user_id,isbn,rating,comment) "
+    sql += "Values(:user_id,:isbn,:rate,:comment)"
+    db.execute(sql,{"user_id":user_id,"isbn":isbn,"rate":rate,"comment":comment})
+    db.commit()
+    
+    #Get the books overall rating in book table
+    sql = "select ratings from books where isbn = :isbn"
+    result =  db.execute(sql,{"isbn":isbn})
+    
+    for row in result:
+        overall_rating.append(row)
+        
+    #update overall rating
+    if overall_rating[0][0] ==  "":
+        sql = "UPDATE books SET ratings = :rate where isbn = :isbn"
+        db.execute(sql,{"rate":rate,"isbn":isbn})
+        db.commit()
+    else:
+        overall_rating = int(overall_rating[0][0])
+        overall_rating = int((rate + overall_rating)/2)
+        sql = "UPDATE books SET ratings = :rate where isbn = :isbn"
+        db.execute(sql,{"rate":overall_rating,"isbn":isbn})
+        db.commit()    
     
 
 
