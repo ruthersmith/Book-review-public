@@ -25,6 +25,7 @@ DB_URL += "5432/d5aba9o0q74a0v"
 engine = create_engine(DB_URL)
 db = scoped_session(sessionmaker(bind=engine))
 
+data = {}
 
 @app.route("/")
 def index():
@@ -34,7 +35,6 @@ def index():
 @app.route('/home',methods = ["POST"])
 def home():
     #data to be passed in to the front
-    data = {}
     
     #authentification 
     user = helpers.authenticate(db,request)
@@ -50,7 +50,7 @@ def home():
     #reading list 
     data['reading_list'] = []
     #book reviewed
-    data['reading_list'] 
+    data['book_reviewed'] = []
     
     print(user)    
     return render_template("dashboard.html",data=data)
@@ -80,10 +80,15 @@ def book(isbn):
 def browse():
     data = {}
         # list of (isbn,ratings,title,author,year) book info
-    browse_book = helpers.getBooks(db,limit = 300)
-    browse_book.pop(0)
-    data['browse'] = browse_book
+    data['browse'] = helpers.getBooks(db,limit = 300)
     return render_template("pages/browse_page.html",data=data)
+
+@app.route('/commented',methods = ["POST"])
+#when a new comment is submitted  this function is called
+def submitComment():
+    
+    print(data)
+    return "hello"
 
 
 

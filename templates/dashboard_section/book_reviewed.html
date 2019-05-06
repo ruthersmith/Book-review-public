@@ -1,5 +1,5 @@
 <!-- # list of (isbn,ratings,title,author,year) book info -->
-{% for book in range(4) %}
+{% for book in  data['book_reviewed'] %}
   <div class="col-md-3 col-xs-12">
      <a href="#">
       <div class="img-thumbnail  col-xs-12" style="background-color:purple;height:20vh">
@@ -10,3 +10,13 @@
       </a>
   </div>
   {% endfor %}
+
+  {% if data['book_reviewed']|length < 4 %}
+  <div class="col-md-3 col-xs-12">
+     <a href="{{url_for('browse')}}">
+      <div class="img-thumbnail  col-xs-12" style="background-color:purple;height:20vh">
+            <h1 style="text-align:center; border-radius:50px"> Add Books</h1>
+      </div>
+      </a>
+  </div>
+  {% endif %}

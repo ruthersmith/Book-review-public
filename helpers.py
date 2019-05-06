@@ -59,6 +59,16 @@ def getBookInfo(db,isbn):
         book.append(row)
     
     return book[0]
+
+def insertRating(db,user,request):
+    isbn = request.form.get("isbn")
+    comment  = request.form.get("comment")
+    rating = request.form.get("rate")
+    
+    sql = "insert into rates(user_id,isbn,rating,comment) "
+    sql += "Values(:user_id,:isbn,:rating,:comment)"
+    db.execute(sql,{"user_id":user,"isbn":isbn,"rating":rating,"comment":comment})
+    db.commit()
     
     
 

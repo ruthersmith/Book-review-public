@@ -32,32 +32,36 @@
               anim id est laborum.</p>
 
           <div class="col-sm-12">
-            <form class="" action="index.html" method="post">
+            <form class="" action="{{url_for('submitComment')}}" method="post">
               <div class="form-group row col-sm-12">
                 <h5>Comment:</h5>
-                <textarea class="form-control" id="exampleFormControlTextarea1" rows="2"></textarea>
+                <textarea name="comment" class="form-control" id="exampleFormControlTextarea1" rows="2"></textarea>
               </div>
 
               <div class="form-group row ">
                 <h5 class="col-sm-12">Rate Book:</h5>
-                <input class="offset-sm-1" type="number" min="0" max="5">
+                <input name="rate" class="offset-sm-1" type="number" min="0" max="5">
+                <input type="hidden"  name="user_id" value="3487">
+                <input type="hidden"  name="isbn" value="3487">
                 <button style="" class="btn btn-primary offset-sm-4 btn-color" type="submit">
                   Submit Rating</button>
               </div>
 
-
-
-
             </form>
           </div>
 
+          <div class="col-md-12" style="border:1px solid white; margin-bottom:10px">
+            <div class="col-md-8" style="border:1px solid white;">
+              <h6>commenter says:</h6>
+              <p>I am commenting yay!!</p>
+            </div>
+            <div class="col-md-1" style="border:1px solid white;">
+              <p>rated:3</p>
+            </div>
+          </div>
+
       </div>
-
     </div>
-
-
-
-
 
   </div>
 </body>

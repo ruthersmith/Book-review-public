@@ -1,7 +1,16 @@
-Create Table Users(
+Create Table users(
 user_id Serial Primary Key,
 user_name Text Not Null,
 password Text Not Null,
 first_name Text Not Null;
 last_name Text Not Null;);
 
+Create Table rates(
+user_id Integer REFERENCES users(user_id),
+isbn Text REFERENCES books(isbn),
+rating Text,
+comment Text);
+
+Create Table readinglist(
+user_id Integer REFERENCES users(user_id),
+isbn Text REFERENCES books(isbn));
