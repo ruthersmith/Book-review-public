@@ -15,7 +15,4 @@ Create Table readinglist(
 user_id Integer Not Null REFERENCES users(user_id),
 isbn Text Not Null REFERENCES books(isbn));
 
-Select user_name,rating,comment 
-from rates
-join users using(user_id)
-where isbn = '1857231082'
+select * from books where title like '%dark%';

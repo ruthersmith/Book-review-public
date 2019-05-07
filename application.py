@@ -93,8 +93,15 @@ def submitComment():
 
 @app.route('/read',methods = ["POST"])
 def addReadingList():
+    isbn = request.form.get("isbn").strip()
     helpers.insertReading(db,session['user_id'],request)
-    return "you added a book" + str(session['user_id'])
+    return redirect(url_for('book',isbn = isbn))
 
+@app.route('/search')
+def search():
+    data = {}
+    search_request = request.args.get("search").capitalize() 
+    data['search_result'] = helpers.getSearchRequest(db,search_request)
+    return render_template("search.html",data=data)
 
 

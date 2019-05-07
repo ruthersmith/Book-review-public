@@ -143,7 +143,21 @@ def submitComment(db,user_id,request):
         db.execute(sql,{"rate":overall_rating,"isbn":isbn})
         db.commit()    
     
-
+def getSearchRequest(db,search):
+    search_result = []
+    sql = "select * from books where title like :begin " 
+    sql += "or title like :middle or title like :end "
+    
+    begining = search + '%'
+    middle = '%' + search + '%'
+    end = '%' + search 
+    
+    query_result = db.execute(sql,{"begin":begining,"middle":middle,"end":end})
+    
+    for row in query_result:
+        search_result.append(row)
+        
+    return search_result
 
         
     
